@@ -15,3 +15,28 @@ a{
 li:first-child{
     width: 200px;
 }
+
+.tag-contianer{
+    position: relative;
+}
+
+.tag-button{
+    width: 50px;
+    height: 40px;
+}
+
+.morehover{
+    opacity: 0.1;
+    position: absolute;
+    width: 50px;
+    height: 40px;
+    top: 0px;
+}
+
+.morehover:hover{
+    opacity: 1;
+    width: 100px;
+    height: 300px;
+    box-shadow: 1px 1px 1px #000000;
+    background-color: #ffffff;
+}

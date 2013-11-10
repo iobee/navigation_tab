@@ -2,41 +2,68 @@ ol,ul,li{
     list-style: none;
 }
 
-li{
-    display: inline-block;
+.tag_header{
+    border-left: 1px solid darkgray;
+    border-right: 1px solid darkgray;
+    border-top: 1px solid darkgray;
+    padding: 5px 0px;
 }
 
-a{
-    margin-bottom: 20px;
-    padding: 10px 0;
-    display: block;
+.tag_header em{
+    color: #19abff;
 }
 
-li:first-child{
-    width: 200px;
+.tag_box{
+    padding-bottom: 12px;
+    border: 1px solid darkgrey;
+    padding-top: 12px;
+    height: 45px;
 }
 
-.tag-contianer{
+.tag_box .tag_contianer{
     position: relative;
 }
 
-.tag-button{
-    width: 50px;
-    height: 40px;
+.tag_box .tag_contianer .tag_button {
+    padding: 5px;
+    border: 1px solid;
+    border-color: #19abff;
+    text-align: center;
+    font-size: 15px;
+    font-family: Microsoft YaHei;
+    color: #19abff;
+    text-transform: uppercase;
 }
 
-.morehover{
-    opacity: 0.1;
+.tag_box .tag_contianer .morehover{
+    opacity: 0;
     position: absolute;
     width: 50px;
     height: 40px;
     top: 0px;
 }
 
-.morehover:hover{
+.tag_box .tag_contianer .morehover:hover{
     opacity: 1;
     width: 100px;
     height: 300px;
     box-shadow: 1px 1px 1px #000000;
     background-color: #ffffff;
+}
+
+.tag_box .tag_contianer .morehover .header{
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+}
+
+.tag_box .tag_contianer .morehover ul{
+    margin: 10px 10px 10px 0;
+}
+
+.tag_box .tag_contianer .morehover ul li{
+    margin: 0 0 5px;
+}
+
+.tag_box .tag_contianer .morehover ul li a{
+    text-decoration: none;
 }

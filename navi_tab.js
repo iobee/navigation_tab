@@ -27,15 +27,6 @@
 /*chrome.storage.sync.set({'test': news.content}, function(){
     console.log('store data');
 });*/
-
-var containerForce = document.getElementById('containerForce');
-var html = '<a>test</a>';
-var a = document.createElement('a');
-var text = document.createTextNode('myTest');
-a.appendChild(text);
-a.href = 'www.baidu.com';
-containerForce.appendChild(a);
-
 var CATEGORY = 'category';
 var cate = {};
 cate[CATEGORY] = ['test', 'news', 'tech'];
@@ -43,29 +34,51 @@ chrome.storage.sync.set(cate, function(){
     console.log('store data');
 });
 
-var conainerTest = document.getElementById('containerTest');
+var tagContainer = document.getElementById('tagContianer');
 
 chrome.storage.sync.get(CATEGORY, function(result){
     var category = result[CATEGORY];
     var length = category.length;
-    var classSize = 12/length;
     for(var i = 0; i < length; i++){
-        var div = document.createElement('div');
-        div.className = 'grid_1';
-        var textNode = document.createTextNode(category[i]);
-        console.log(textNode);
-        var tag = document.createElement('button');
-        tag.name = category[i];
-        tag.appendChild(textNode);
-        div.appendChild(tag);
+        var tag = document.createElement('div');
+        tag.className = 'grid_1 tag_contianer';
 
-        conainerTest.appendChild(div);
+        var tagButton = document.createElement('div');
+        var textNode = document.createTextNode(category[i]);
+        tagButton.appendChild(textNode);
+        tagButton.className = 'tag_button';
+        console.log(textNode);
+        var moreOver = document.createElement('div');
+        moreOver.className = 'morehover';
+        var ul = document.createElement('ul');
+
+        chrome.storage.sync.get(category[i], function(item){
+            console.log(item.test);
+            items = item.test;
+            console.log(items.length);
+
+            for(var i=0; i< items.length; i++){
+                var li = document.createElement('li');
+                var anchor = document.createElement('a');
+                anchor.appendChild(document.createTextNode(items[i].title))
+                anchor.href = items[i].url;
+                anchor.name = items[i].title;
+                console.log(anchor);
+                li.appendChild(anchor);
+                ul.appendChild(li);
+            }
+        });
+
+        moreOver.appendChild(ul);
+        tag.appendChild(tagButton);
+        tag.appendChild(moreOver);
+        tagContainer.appendChild(tag);
     }
 
 
 })
 
-chrome.storage.sync.get(null, function(items){
+/*chrome.storage.sync.get(null, function(items){
     console.log(items);
 });
 
@@ -82,8 +95,9 @@ chrome.storage.sync.get('test', function(item){
         console.log(anchor);
         containerForce.appendChild(anchor);
     }
-});
+});*/
 
+//add url to shorage
 function addUrl(category, title, url){
     console.log('test');
     chrome.storage.sync.get(category, function(result){
@@ -104,10 +118,10 @@ function addUrl(category, title, url){
     });
 }
 
-var button = document.getElementsByTagName('button');
+/*var button = document.getElementsByTagName('button');
 console.log(button);
 //button[0].addEventListener('click', addUrl('test', 'cnbeta', 'www.baidu.com'));
 button[0].addEventListener('click', function print(){
     addUrl('test', 'cnbeta', 'www.baidu.com');
     console.log('test');
-});
+});*/
